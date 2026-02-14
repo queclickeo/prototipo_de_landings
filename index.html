@@ -129,13 +129,7 @@
             </div>
 
           </div>
-
-          <!-- Enlace de respaldo -->
-          <div class="text-center mt-3">
-            <a href="https://www.youtube.com/watch?v=Y1XeoV0sKiY" target="_blank" class="text-gray-400 text-xs hover:text-white underline">
-              <i class="fas fa-external-link-alt mr-1"></i> Si el video no carga, haz clic aquí para verlo en YouTube
-            </a>
-          </div>
+          <!-- Texto de respaldo eliminado -->
         </div>
 
       </div>
@@ -189,8 +183,9 @@
       <div class="flex flex-col md:flex-row items-center gap-12 bg-white rounded-2xl shadow-xl overflow-hidden">
 
         <div class="md:w-1/2 h-full">
+          <!-- Imagen del Dr. Robles Actualizada -->
           <div class="bg-gray-300 h-96 w-full flex items-center justify-center bg-cover bg-center"
-               style="background-image:url('https://placehold.co/600x800/e2e8f0/1e293b?text=Dr.+Robles+en+Congreso');">
+               style="background-image:url('https://thumbs2.imgbox.com/58/21/KGUqZgCA_t.png');">
           </div>
         </div>
 
@@ -358,28 +353,46 @@
     </div>
   </section>
 
+  <!-- SECCIÓN NUEVA: CALENDARIO DE RESERVA (Embed) -->
+  <section class="py-20 bg-white border-t border-gray-100" id="aplicar">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-medical-900 mb-4">
+        Agenda tu Entrevista de Admisión
+      </h2>
+      <p class="text-gray-600 mb-10 max-w-2xl mx-auto">
+        Selecciona un horario disponible en el calendario para hablar con nuestro equipo.
+        <br>
+        <span class="text-sm text-urgent-600 font-semibold">* La llamada es gratuita y sirve para evaluar tu perfil.</span>
+      </p>
+
+      <!-- Calendly inline widget begin -->
+      <div class="calendly-inline-widget" data-url="https://calendly.com/queclickeo/entrevista-de-admision" style="min-width:320px;height:700px;"></div>
+      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+      <!-- Calendly inline widget end -->
+      
+    </div>
+  </section>
+
   <!-- SECCIÓN 7: FOOTER -->
-  <footer class="bg-medical-900 text-white py-16" id="aplicar">
+  <footer class="bg-medical-900 text-white py-16">
     <div class="container mx-auto px-4 text-center">
       <div class="max-w-2xl mx-auto mb-10">
         <i class="fas fa-user-md text-5xl mb-6 text-sky-400"></i>
-        <h3 class="text-3xl font-bold mb-4">¿Listo para habilitar tu mano?</h3>
+        <h3 class="text-3xl font-bold mb-4">¿Tienes dudas antes de agendar?</h3>
         <p class="text-gray-300 mb-8">
-          Solo aceptamos médicos con matrícula habilitante o residentes en formación avanzada. Si cumples con el perfil, agenda tu entrevista.
+          Si prefieres consultarnos algo rápido antes de reservar tu cita, escríbenos directamente.
         </p>
 
         <div class="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
-          <button onclick="window.open('https://calendly.com/queclickeo/entrevista-de-admision', '_blank')"
-                  class="bg-urgent-600 hover:bg-urgent-700 text-white font-bold py-4 px-10 rounded-lg shadow-lg transform transition hover:scale-105 text-lg w-full sm:w-auto">
-            APLICAR AHORA
-          </button>
+          <!-- Botón de Aplicar eliminado porque el calendario ya está visible arriba -->
 
           <a href="https://www.instagram.com/adalbertorobles17/" target="_blank"
              class="inline-block btn-instagram text-white font-bold py-4 px-10 rounded-lg shadow-lg transform transition hover:scale-105 text-lg w-full sm:w-auto text-center flex items-center justify-center">
             <i class="fab fa-instagram mr-2 text-2xl"></i> Instagram
           </a>
 
-          <a href="https://wa.me/" target="_blank"
+          <!-- Botón WhatsApp -->
+          <a href="https://wa.me/5493515522335?text=Hola,%20me%20interesa%20el%20Entrenamiento%20en%20Ecodoppler%20Card%C3%ADaco.%20%C2%BFMe%20podr%C3%ADan%20dar%20m%C3%A1s%20informaci%C3%B3n?" target="_blank"
              class="inline-block btn-whatsapp text-white font-bold py-4 px-10 rounded-lg shadow-lg transform transition hover:scale-105 text-lg w-full sm:w-auto text-center flex items-center justify-center">
             <i class="fab fa-whatsapp mr-2 text-2xl"></i> WhatsApp
           </a>
