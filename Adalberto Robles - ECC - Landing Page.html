@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Entrenamiento Ecodoppler Cardíaco | Dr. Robles</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            medical: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              600: '#0284c7',
+              800: '#075985',
+              900: '#0c4a6e',
+            },
+            urgent: {
+              600: '#dc2626',
+              700: '#b91c1c',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+
+    .hero-pattern {
+      background-color: #0f172a;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231e293b' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .phone-mockup {
+      border: 12px solid #1f2937;
+      border-radius: 30px;
+      overflow: hidden;
+      background-color: #e5e7eb;
+    }
+
+    .btn-instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    }
+    .btn-instagram:hover { filter: brightness(1.1); }
+
+    .btn-whatsapp { background-color: #25D366; }
+    .btn-whatsapp:hover { background-color: #20bd5a; }
+
+    .video-facade {
+      cursor: pointer;
+      background-size: cover;
+      background-position: center;
+      transition: all 0.3s ease;
+    }
+    .video-facade:hover .play-button {
+      transform: scale(1.1);
+      background-color: #ff0000;
+    }
+  </style>
+</head>
+
+<body class="font-sans text-gray-800 antialiased">
+
+  <!-- SECCIÓN 1: HERO -->
+  <header class="hero-pattern text-white min-h-screen flex items-center relative overflow-hidden">
+    <div class="container mx-auto px-4 py-16 md:py-24 relative z-10">
+      <div class="flex flex-col lg:flex-row items-center gap-12">
+
+        <!-- Texto Hero -->
+        <div class="lg:w-1/2 text-center lg:text-left">
+          <span class="inline-block py-1 px-3 rounded-full bg-blue-800 text-blue-100 text-sm font-semibold mb-6 border border-blue-500">
+            Programa de Alta Competencia
+          </span>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
+            Programa de Entrenamiento Clínico en <span class="text-sky-400">Ecodoppler Cardíaco</span>
+          </h1>
+          <p class="text-xl md:text-2xl text-gray-300 mb-8 font-light">
+            Deja de "mirar" y empieza a "hacer". El único programa híbrido que combina teoría de élite, comunidad de interconsulta y práctica presencial 1 a 1.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <a href="#aplicar" class="inline-block bg-urgent-600 hover:bg-urgent-700 text-white font-bold py-4 px-8 rounded-lg shadow-lg transform transition hover:scale-105 text-lg w-full sm:w-auto text-center">
+              QUIERO UNA ENTREVISTA <i class="fas fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+
+          <p class="mt-4 text-sm text-gray-400">
+            <i class="fas fa-check-circle text-green-500 mr-1"></i> Solo para médicos titulados o residentes.
+          </p>
+        </div>
+
+        <!-- Video (VSL) OPTIMIZADO + ANALYTICS + % PROGRESO -->
+        <div class="lg:w-1/2 w-full">
+          <div class="rounded-xl shadow-2xl overflow-hidden border border-gray-700 bg-black aspect-video relative group">
+
+            <!-- Contenedor del video -->
+            <div id="video-container" class="w-full h-full relative">
+              <!-- Fachada (Imagen + Botón Play) -->
+              <div id="video-cover"
+                   class="video-facade absolute inset-0 w-full h-full flex items-center justify-center z-10"
+                   style="background-image:url('https://img.youtube.com/vi/Y1XeoV0sKiY/hqdefault.jpg');"
+                   onclick="loadVSL()">
+
+                <div class="absolute inset-0 bg-black bg-opacity-40 hover:bg-opacity-30 transition"></div>
+
+                <div class="play-button w-20 h-20 bg-urgent-600 rounded-full flex items-center justify-center shadow-lg relative z-20 transition">
+                  <i class="fas fa-play text-white text-3xl ml-1"></i>
+                </div>
+              </div>
+
+              <!-- Donde se monta el player -->
+              <div id="yt-player" class="absolute inset-0 w-full h-full"></div>
+            </div>
+
+          </div>
+
+          <!-- Enlace de respaldo -->
+          <div class="text-center mt-3">
+            <a href="https://www.youtube.com/watch?v=Y1XeoV0sKiY" target="_blank" class="text-gray-400 text-xs hover:text-white underline">
+              <i class="fas fa-external-link-alt mr-1"></i> Si el video no carga, haz clic aquí para verlo en YouTube
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- SECCIÓN 2: EL PROBLEMA -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-center text-medical-900 mb-16">
+        ¿Te sientes identificado con esto?
+      </h2>
+
+      <div class="grid md:grid-cols-3 gap-10">
+        <div class="bg-medical-50 p-8 rounded-xl text-center hover:shadow-md transition duration-300">
+          <div class="w-16 h-16 bg-blue-100 text-medical-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
+            <i class="fas fa-face-frown-open"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-800 mb-3">Frustración</h3>
+          <p class="text-gray-600">
+            Tienes el ecógrafo en la clínica, pero no te animas a usarlo por inseguridad y falta de "mano".
+          </p>
+        </div>
+
+        <div class="bg-medical-50 p-8 rounded-xl text-center hover:shadow-md transition duration-300">
+          <div class="w-16 h-16 bg-blue-100 text-medical-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
+            <i class="fas fa-hand-holding-dollar"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-800 mb-3">Pérdida Económica</h3>
+          <p class="text-gray-600">
+            Derivas docenas de pacientes al mes a otros centros, regalando facturación que podrías capturar.
+          </p>
+        </div>
+
+        <div class="bg-medical-50 p-8 rounded-xl text-center hover:shadow-md transition duration-300">
+          <div class="w-16 h-16 bg-blue-100 text-medical-600 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
+            <i class="fas fa-book-reader"></i>
+          </div>
+          <h3 class="text-xl font-bold text-gray-800 mb-3">Saturación Teórica</h3>
+          <p class="text-gray-600">
+            Has hecho cursos online donde solo ves videos y PDFs, pero no aprendes el "oficio" real.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 3: AUTORIDAD -->
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-col md:flex-row items-center gap-12 bg-white rounded-2xl shadow-xl overflow-hidden">
+
+        <div class="md:w-1/2 h-full">
+          <div class="bg-gray-300 h-96 w-full flex items-center justify-center bg-cover bg-center"
+               style="background-image:url('https://placehold.co/600x800/e2e8f0/1e293b?text=Dr.+Robles+en+Congreso');">
+          </div>
+        </div>
+
+        <div class="md:w-1/2 p-8 md:p-12">
+          <div class="mb-4">
+            <i class="fas fa-quote-left text-4xl text-medical-600 opacity-30"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-medical-900 mb-4">La validación de los grandes</h3>
+          <p class="text-lg text-gray-700 italic mb-6">
+            "No soy un youtuber, soy un médico con 30 años de experiencia clínica. En un congreso en Madrid, los referentes mundiales validaron mi metodología porque es la única que garantiza 'horas de vuelo' reales en el paciente".
+          </p>
+          <p class="font-semibold text-gray-900">— Dr. Robles</p>
+          <p class="text-sm text-gray-500">Director del Programa de Alta Competencia</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 4: BONUS VIP -->
+  <section class="py-20 bg-medical-900 text-white overflow-hidden relative">
+    <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 rounded-full bg-medical-800 opacity-50 blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-64 h-64 rounded-full bg-medical-600 opacity-50 blur-3xl"></div>
+
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-16">
+
+        <div class="md:w-1/2">
+          <span class="text-sky-400 font-bold tracking-widest uppercase mb-2 block">El Mastermind Clínico</span>
+          <h2 class="text-3xl md:text-5xl font-bold mb-6">Tu Seguro de Diagnóstico: Soporte 24/7</h2>
+          <p class="text-lg text-gray-300 mb-8 leading-relaxed">
+            Al ingresar, accedes a una red de colegas de México, Paraguay y Argentina. Sube tus dudas y recibe feedback experto en tiempo real.
+          </p>
+          <div class="flex items-start gap-4 mb-4">
+            <div class="mt-1 bg-green-500 rounded-full p-1"><i class="fas fa-check text-xs"></i></div>
+            <p>Resolución de casos complejos en minutos.</p>
+          </div>
+          <div class="flex items-start gap-4 mb-8">
+            <div class="mt-1 bg-green-500 rounded-full p-1"><i class="fas fa-check text-xs"></i></div>
+            <p class="font-bold text-white">No estás comprando un curso, estás comprando respaldo profesional de por vida.</p>
+          </div>
+        </div>
+
+        <div class="md:w-1/2 flex justify-center">
+          <div class="phone-mockup w-72 h-[500px] bg-white relative">
+            <div class="absolute top-0 w-full h-8 bg-gray-800 rounded-b-xl z-20 flex justify-center">
+              <div class="w-16 h-4 bg-gray-900 rounded-b-lg"></div>
+            </div>
+            <div class="h-full w-full bg-gray-100 overflow-y-hidden pt-10 px-3 pb-4 flex flex-col gap-3">
+              <div class="bg-green-100 p-2 rounded-lg rounded-tl-none self-start max-w-[85%] text-xs shadow-sm text-gray-800">
+                <strong>Dr. Pérez (México):</strong> Colegas, paciente 45 años, soplo sistólico. ¿Qué opinan de este flujo? [Video]
+              </div>
+              <div class="bg-white p-2 rounded-lg rounded-tr-none self-end max-w-[85%] text-xs shadow-sm text-gray-800 border border-gray-200">
+                <strong>Dr. Robles:</strong> Fíjate la válvula mitral. Parece un prolapso leve. Cambia el ángulo para confirmar.
+              </div>
+              <div class="bg-green-100 p-2 rounded-lg rounded-tl-none self-start max-w-[85%] text-xs shadow-sm text-gray-800">
+                <strong>Dra. Gómez (Arg):</strong> Coincido con Robles. Tuve un caso igual ayer.
+              </div>
+              <div class="bg-white p-2 rounded-lg rounded-tr-none self-end max-w-[85%] text-xs shadow-sm text-gray-800 border border-gray-200">
+                <strong>Dr. Pérez:</strong> ¡Gracias! Era eso. Diagnóstico confirmado.
+              </div>
+              <div class="mt-auto text-center text-xs text-gray-400">
+                +50 mensajes no leídos
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 5: OFERTA -->
+  <section class="py-24 bg-white" id="oferta">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-center text-medical-900 mb-4">
+        Elige tu Nivel de Compromiso
+      </h2>
+      <p class="text-center text-gray-600 mb-16 max-w-2xl mx-auto">
+        Nuestro sistema divide la teoría de la práctica para asegurar que solo lleguen al paciente aquellos que dominan los fundamentos.
+      </p>
+
+      <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+
+        <div class="border border-gray-200 rounded-2xl p-8 shadow-lg hover:shadow-xl transition relative bg-white">
+          <h3 class="text-2xl font-bold text-medical-900 mb-2">FASE 1: ONLINE</h3>
+          <p class="text-gray-500 mb-6 text-sm">Base académica y soporte.</p>
+          <div class="text-5xl font-bold text-gray-800 mb-6">$700 <span class="text-lg font-normal text-gray-500">USD</span></div>
+
+          <ul class="space-y-4 mb-8 text-gray-700">
+            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Acceso inmediato a la plataforma 24/7</li>
+            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Módulos teóricos actualizados</li>
+            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> <strong>Acceso de por vida al Grupo de WhatsApp</strong></li>
+            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Certificación Teórica</li>
+            <li class="flex items-center"><i class="fas fa-check text-green-500 mr-3"></i> Prioridad en Lista de Espera Práctica</li>
+          </ul>
+
+          <a href="#aplicar" class="block w-full py-3 bg-medical-100 text-medical-800 font-bold text-center rounded-lg hover:bg-medical-200 transition">
+            Comenzar Fase 1
+          </a>
+        </div>
+
+        <div class="border-2 border-medical-600 rounded-2xl p-8 shadow-2xl relative bg-medical-50 transform md:-translate-y-4">
+          <div class="absolute top-0 right-0 bg-urgent-600 text-white text-xs font-bold px-4 py-2 rounded-bl-xl rounded-tr-xl">
+            CUPOS LIMITADOS (4/MES)
+          </div>
+          <h3 class="text-2xl font-bold text-medical-900 mb-2">FASE 2: PRÁCTICA</h3>
+          <p class="text-gray-500 mb-6 text-sm">Entrenamiento Intensivo Presencial.</p>
+          <div class="text-5xl font-bold text-medical-900 mb-6">$200 <span class="text-lg font-normal text-gray-500">USD</span></div>
+          <p class="text-xs text-red-500 mb-4 font-semibold">* Se abona únicamente al confirmar fecha de viaje.</p>
+
+          <ul class="space-y-4 mb-8 text-gray-700">
+            <li class="flex items-center"><i class="fas fa-check text-medical-600 mr-3"></i> <strong>Mano sobre mano con el Dr. Robles</strong></li>
+            <li class="flex items-center"><i class="fas fa-check text-medical-600 mr-3"></i> Entrenamiento intensivo presencial</li>
+            <li class="flex items-center"><i class="fas fa-check text-medical-600 mr-3"></i> Pacientes reales (Casos patológicos)</li>
+            <li class="flex items-center"><i class="fas fa-check text-medical-600 mr-3"></i> Feedback instantáneo</li>
+            <li class="flex items-center"><i class="fas fa-check text-medical-600 mr-3"></i> Habilitación técnica</li>
+          </ul>
+
+          <a href="#aplicar" class="block w-full py-3 bg-medical-600 text-white font-bold text-center rounded-lg hover:bg-medical-700 transition shadow-md">
+            Aplicar para Práctica
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 6: FAQ -->
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4 max-w-3xl">
+      <h2 class="text-3xl font-bold text-center text-medical-900 mb-12">Preguntas Frecuentes</h2>
+
+      <div class="space-y-4">
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+          <button class="w-full text-left px-6 py-4 focus:outline-none flex justify-between items-center" onclick="toggleFaq('faq1')">
+            <span class="font-bold text-gray-800">¿Soy residente, puedo entrar?</span>
+            <i class="fas fa-chevron-down text-medical-600 transition-transform" id="icon-faq1"></i>
+          </button>
+          <div id="faq1" class="hidden px-6 pb-4 text-gray-600 border-t border-gray-100 pt-4">
+            Sí, absolutamente. De hecho, es el mejor momento para adquirir la técnica correcta antes de desarrollar vicios.
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+          <button class="w-full text-left px-6 py-4 focus:outline-none flex justify-between items-center" onclick="toggleFaq('faq2')">
+            <span class="font-bold text-gray-800">¿Por qué se paga por separado?</span>
+            <i class="fas fa-chevron-down text-medical-600 transition-transform" id="icon-faq2"></i>
+          </button>
+          <div id="faq2" class="hidden px-6 pb-4 text-gray-600 border-t border-gray-100 pt-4">
+            Porque la práctica tiene cupos físicos limitados (máximo 4 alumnos por mes).
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+          <button class="w-full text-left px-6 py-4 focus:outline-none flex justify-between items-center" onclick="toggleFaq('faq3')">
+            <span class="font-bold text-gray-800">¿Qué pasa si no tengo ecógrafo ahora mismo?</span>
+            <i class="fas fa-chevron-down text-medical-600 transition-transform" id="icon-faq3"></i>
+          </button>
+          <div id="faq3" class="hidden px-6 pb-4 text-gray-600 border-t border-gray-100 pt-4">
+            Puedes cursar la fase teórica perfectamente. Recomendamos tener acceso a uno para aprovechar el Mastermind.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 7: FOOTER -->
+  <footer class="bg-medical-900 text-white py-16" id="aplicar">
+    <div class="container mx-auto px-4 text-center">
+      <div class="max-w-2xl mx-auto mb-10">
+        <i class="fas fa-user-md text-5xl mb-6 text-sky-400"></i>
+        <h3 class="text-3xl font-bold mb-4">¿Listo para habilitar tu mano?</h3>
+        <p class="text-gray-300 mb-8">
+          Solo aceptamos médicos con matrícula habilitante o residentes en formación avanzada. Si cumples con el perfil, agenda tu entrevista.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center flex-wrap">
+          <button onclick="window.open('https://calendly.com/queclickeo/entrevista-de-admision', '_blank')"
+                  class="bg-urgent-600 hover:bg-urgent-700 text-white font-bold py-4 px-10 rounded-lg shadow-lg transform transition hover:scale-105 text-lg w-full sm:w-auto">
+            APLICAR AHORA
+          </button>
+
+          <a href="https://www.instagram.com/adalbertorobles17/" target="_blank"
+             class="inline-block btn-instagram text-white font-bold py-4 px-10 rounded-lg shadow-lg transform transition hover:scale-105 text-lg w-full sm:w-auto text-center flex items-center justify-center">
+            <i class="fab fa-instagram mr-2 text-2xl"></i> Instagram
+          </a>
+
+          <a href="https://wa.me/" target="_blank"
+             class="inline-block btn-whatsapp text-white font-bold py-4 px-10 rounded-lg shadow-lg transform transition hover:scale-105 text-lg w-full sm:w-auto text-center flex items-center justify-center">
+            <i class="fab fa-whatsapp mr-2 text-2xl"></i> WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-700 pt-8 text-sm text-gray-500">
+        <p class="mb-2">© 2025 Dr. Robles - Entrenamiento de Alta Competencia. Todos los derechos reservados.</p>
+        <p>Este sitio no es parte de Facebook o Meta Inc. Adicionalmente, este sitio no está respaldado por Facebook de ninguna manera.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    // =========================
+    // FAQ
+    // =========================
+    function toggleFaq(id) {
+      const content = document.getElementById(id);
+      const icon = document.getElementById('icon-' + id);
+
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+      } else {
+        content.classList.add('hidden');
+        icon.classList.remove('rotate-180');
+      }
+    }
+
+    // =========================
+    // VSL CONFIG
+    // =========================
+    const VSL_VIDEO_ID = 'Y1XeoV0sKiY';
+    const VSL_LABEL = 'VSL_Ecodoppler_Robles';
+
+    let ytApiReady = false;
+    let player = null;
+
+    // progreso
+    let progressTimer = null;
+    const firedMilestones = new Set(); // "25", "50", "75", "90"
+    let durationCache = null;
+
+    // =========================
+    // TRACKING
+    // =========================
+    function track(eventName, extra = {}) {
+      const payload = {
+        event: eventName,
+        label: VSL_LABEL,
+        video_id: VSL_VIDEO_ID,
+        ts: new Date().toISOString(),
+        ...extra
+      };
+
+      // GTM
+      if (window.dataLayer && Array.isArray(window.dataLayer)) {
+        window.dataLayer.push(payload);
+      }
+
+      // GA4 gtag
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', eventName, payload);
+      }
+
+      // Debug local
+      console.log('[TRACK]', payload);
+    }
+
+    // =========================
+    // YT IFRAME API (lazy)
+    // =========================
+    function loadYouTubeAPI() {
+      return new Promise((resolve) => {
+        if (ytApiReady || (window.YT && window.YT.Player)) return resolve();
+
+        if (document.getElementById('yt-iframe-api')) {
+          const check = setInterval(() => {
+            if (window.YT && window.YT.Player) {
+              clearInterval(check);
+              ytApiReady = true;
+              resolve();
+            }
+          }, 50);
+          return;
+        }
+
+        const tag = document.createElement('script');
+        tag.id = 'yt-iframe-api';
+        tag.src = 'https://www.youtube.com/iframe_api';
+        document.head.appendChild(tag);
+
+        window.onYouTubeIframeAPIReady = () => {
+          ytApiReady = true;
+          resolve();
+        };
+      });
+    }
+
+    // =========================
+    // PLAYER CREATION
+    // =========================
+    function createPlayer() {
+      return new Promise((resolve) => {
+        player = new YT.Player('yt-player', {
+          videoId: VSL_VIDEO_ID,
+          playerVars: {
+            autoplay: 1,
+            rel: 0,
+            playsinline: 1,
+            mute: 1,              // clave para evitar bloqueo de autoplay
+            modestbranding: 1
+          },
+          events: {
+            onReady: () => {
+              track('vsl_ready');
+              resolve();
+            },
+            onStateChange: (e) => {
+              // 1 = playing, 2 = paused, 0 = ended, 3 = buffering, 5 = cued
+              if (e.data === 1) {
+                track('vsl_play');
+                startProgressTracking();
+              } else if (e.data === 2) {
+                track('vsl_pause');
+                stopProgressTracking();
+              } else if (e.data === 0) {
+                track('vsl_complete');
+                stopProgressTracking();
+                // asegura 90% si por alguna razón no se disparó
+                fireMilestone(90, { forced: true });
+              }
+            },
+            onError: (e) => {
+              track('vsl_error', { code: e.data });
+            }
+          }
+        });
+      });
+    }
+
+    // =========================
+    // PUBLIC: click en portada
+    // =========================
+    async function loadVSL() {
+      const cover = document.getElementById('video-cover');
+      if (cover) cover.style.display = 'none';
+
+      track('vsl_click');
+
+      if (!player) {
+        await loadYouTubeAPI();
+        await createPlayer();
+      } else {
+        try { player.playVideo(); } catch (_) {}
+      }
+    }
+
+    // =========================
+    // PROGRESS TRACKING (25/50/75/90)
+    // =========================
+    function safeDuration() {
+      try {
+        const d = player && player.getDuration ? player.getDuration() : 0;
+        if (d && d > 0) durationCache = d;
+      } catch (_) {}
+      return durationCache;
+    }
+
+    function fireMilestone(percent, extra = {}) {
+      const key = String(percent);
+      if (firedMilestones.has(key)) return;
+      firedMilestones.add(key);
+      track('vsl_progress', { percent, ...extra });
+    }
+
+    function checkMilestones() {
+      if (!player || !player.getCurrentTime) return;
+
+      const d = safeDuration();
+      if (!d || d <= 0) return;
+
+      let t = 0;
+      try { t = player.getCurrentTime(); } catch (_) { return; }
+
+      const pct = (t / d) * 100;
+
+      if (pct >= 25) fireMilestone(25);
+      if (pct >= 50) fireMilestone(50);
+      if (pct >= 75) fireMilestone(75);
+      if (pct >= 90) fireMilestone(90);
+    }
+
+    function startProgressTracking() {
+      if (progressTimer) return;
+      progressTimer = setInterval(checkMilestones, 1000);
+    }
+
+    function stopProgressTracking() {
+      if (!progressTimer) return;
+      clearInterval(progressTimer);
+      progressTimer = null;
+    }
+
+    // Si el usuario cambia de pestaña, cortamos polling para no spamear
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stopProgressTracking();
+    });
+  </script>
+</body>
+</html>
